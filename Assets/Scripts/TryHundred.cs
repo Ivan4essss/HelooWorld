@@ -2,50 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TryFifty : MonoBehaviour
+public class TryHundred : MonoBehaviour
 {
-
-    public int click;
     public int sum;
-
-    public bool gameFinish;
-
-
-
-
-
-
-
+    public int click;
+    bool finish = false;
 
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        initGame();
-
+        reStart();
     }
-
-    private void initGame()
+    private void reStart()
     {
-        click = 0;
-        gameFinish = false;
         sum = 0;
-
+        click = 0;
         print("Ваша цель достигнуть числа 50 складывая числа на клавиатуре");
-        print("У вас сейчас " + click);
+        print("У вас сейчас " + click + " ходов");
         print("Начинайте!!!");
     }
+
+
+
 
     // Update is called once per frame
     void Update()
     {
-
-
         if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             handleButton(0);
-
         }
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
@@ -54,6 +41,7 @@ public class TryFifty : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
             handleButton(2);
+
         }
         if (Input.GetKeyDown(KeyCode.Keypad3))
         {
@@ -83,51 +71,35 @@ public class TryFifty : MonoBehaviour
         {
             handleButton(9);
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("Space press");
-            initGame();
+            print("Pussh space to restart");
+            reStart();
         }
 
-
-
-
-
-
-
-
     }
-
-    private void handleButton(int value)
+    void handleButton(int value)
     {
         sum += value;
-
         print(sum);
         click++;
-        gameFinish = sum >= 50;
-
-
-        if (gameFinish)
+        finish = sum >= 50;
+        if (finish)
         {
-            if (sum == 50)
+            if (finish = sum == 50)
             {
-                print("Вы победили");
-
+                print("Поздравляем, вы выйграли!");
+                print("За " + click + " шагов");
             }
-            else
+            else 
             {
-                print("Вы проиграли");
+                print("УАПУАПУАП УАААААААП!");
             }
-            print("За " + click + " ходов");
 
-            print("Push Space to restart");
         }
+         
+
 
     }
-
-
-
-
 
 }
